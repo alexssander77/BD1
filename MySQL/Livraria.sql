@@ -5,7 +5,9 @@ use livraria;
 create table editora(
 cod_editora int auto_increment primary key,
 descricao varchar(45) not null,
-endereco varchar(45)
+endereco varchar(45),
+
+foreign key (id_grupo) references grupo(id_grupo)
 );
 
 create table livro(
@@ -35,8 +37,30 @@ data_nascimento date not null
 alter table editora
 change  descricao nome varchar(45);
 
+alter table autor
+change sexo sexo varchar(1);
 
+alter table livro 
+add constraint unique_isbn unique (isbn);
 
+alter table livro 
+modify preco decimal(10, 2) default 10.00;
 
+alter table livro 
+drop column num_edicao;
 
-drop database livraria;
+alter table livro
+add edicao int;
+
+create table grupo(
+id_grupo int auto_increment primary key,
+nome varchar(45)
+);
+
+alter table editora
+add id_grupo int;
+
+alter table editora 
+add constraint fk_grupo
+foreign key (id_grupo) references grupo(id_grupo)
+on delete set null on update cascade;
