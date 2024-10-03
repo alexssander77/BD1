@@ -29,6 +29,7 @@ data_nascimento date not null
 create table livro_autor(
 cod_livro int not null,
 cod_autor int not null,
+primary key(cod_livro, cod_autor),  
 foreign key (cod_livro) references livro(cod_livro),
 foreign key (cod_autor) references autor(cod_autor)
 );
