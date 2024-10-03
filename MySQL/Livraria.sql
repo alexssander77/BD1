@@ -34,23 +34,22 @@ foreign key (cod_livro) references livro(cod_livro),
 foreign key (cod_autor) references autor(cod_autor)
 );
 
-alter table editora
-change  descricao nome varchar(45);
+alter table editora rename column descricao to nome;
+
 
 alter table autor
-change sexo sexo varchar(1);
+change column sexo sexo varchar(1);
 
 alter table livro 
-add constraint unique_isbn unique (isbn);
+add constraint unique (isbn);
 
-alter table livro 
-modify preco decimal(10, 2) default 10.00;
+alter table livro set default preco 10.0;
 
 alter table livro 
 drop column num_edicao;
 
 alter table livro
-add edicao int;
+add column edicao int;
 
 create table grupo(
 id_grupo int auto_increment primary key,
@@ -60,7 +59,5 @@ nome varchar(45)
 alter table editora
 add id_grupo int;
 
-alter table editora 
-add constraint fk_grupo
-foreign key (id_grupo) references grupo(id_grupo)
+alter table editora add constraint foreign key (id_grupo) references grupo(id_grupo)
 on delete set null on update cascade;
