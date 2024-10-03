@@ -20,18 +20,17 @@ cod_editora int not null,
 foreign key (cod_editora) references editora(cod_editora)
 );
 
-create table livro_autor(
-cod_livro int not null,
-cod_autor int not null,
-foreign key (cod_livro) references livro(cod_livro),
-foreign key (cod_autor) references autor(cod_autor)
-);
-
 create table autor(
 cod_autor int auto_increment primary key,
 nome varchar(45) not null,
 sexo char(1),
 data_nascimento date not null 
+);
+create table livro_autor(
+cod_livro int not null,
+cod_autor int not null,
+foreign key (cod_livro) references livro(cod_livro),
+foreign key (cod_autor) references autor(cod_autor)
 );
 
 alter table editora
