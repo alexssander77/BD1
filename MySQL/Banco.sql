@@ -3,7 +3,7 @@ create database Banco;
 use Banco;
 
 create table banco(
-cod_banco int primary key not null,
+cod_banco int primary key not null auto_increment,
 nome varchar(45) 
 );
 
